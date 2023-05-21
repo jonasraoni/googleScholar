@@ -19,6 +19,7 @@ namespace APP\plugins\generic\googleScholar;
 use APP\core\Application;
 use APP\facades\Repo;
 use APP\template\TemplateManager;
+use PKP\citation\CitationDAO;
 use PKP\db\DAORegistry;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
@@ -81,7 +82,7 @@ class GoogleScholarPlugin extends GenericPlugin
         // Only add Google Scholar metadata tags to the canonical URL for the latest version
         // See discussion: https://github.com/pkp/pkp-lib/issues/4870
         if (count($requestArgs) > 1 && $requestArgs[1] === 'version') {
-            return;
+            return false;
         }
 
         $templateMgr = TemplateManager::getManager($request);
